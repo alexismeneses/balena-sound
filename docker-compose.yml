@@ -83,3 +83,11 @@ services:
       - 32500:32500
     volumes:
       - plex_settings:/root/.local/share/Plexamp
+
+  tidal:
+    build: ./plugins/tidal
+    restart: on-failure
+    privileged: true
+    network_mode: host
+    labels:
+      io.balena.features.dbus: 1
