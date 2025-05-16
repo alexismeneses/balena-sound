@@ -1,18 +1,22 @@
-![logo](https://raw.githubusercontent.com/balena-io-projects/balena-sound/master/docs/images/balenaSound-logo.png)
+**This is a fork a the very good [balena-sound](https://github.com/balena-io-experimental/balena-sound) project with some third-party code merged into to add native support for audio services like Tidal or Plex**
 
-**Starter project enabling you to add multi-room audio streaming via Bluetooth, Airplay2, Spotify Connect and others to any old speakers or Hi-Fi using just a Raspberry Pi.**
+Please read [original project documentation](https://balena-io-experimental.github.io/balena-sound/) and/or visit the [project repository](https://github.com/balena-io-experimental/balena-sound) for more information !
 
-## Highlights
+Refer to branches of this repository to see implementation details for each plugin added
+- [Tidal Connect Service](https://github.com/alexismeneses/balena-sound/tree/tidal-connect-support/plugins/tidal)
+- [Plex (Plexamp)](https://github.com/alexismeneses/balena-sound/tree/plex-support/plugins/plex)
 
-- **Audio source plugins**: Stream audio from your favourite music services: Bluetooth, Airplay2, Spotify Connect, UPnP and more!
-- **Multi-room synchronous playing**: Play perfectly synchronized audio on multiple devices all over your place.
-- **Extended DAC support**: Upgrade your audio quality with one of our supported DACs
+This version is reflect the one running on my balenaOS Raspberry Pi with a JustBoom DAC Hat.
 
 ## Setup and configuration
 
 Running this app is as simple as deploying it to a balenaCloud fleet. You can do it in just one click by using the button below:
 
-[![deploy button](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-experimental/balena-sound&defaultDeviceType=raspberry-pi)
+<<<<<<< HEAD
+[![deploy button](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/alexismeneses/balena-sound&defaultDeviceType=raspberry-pi)
+
+=======
+[![deploy button](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-labs-projects/balena-sound&defaultDeviceType=raspberry-pi)
 
 ## Documentation
 
@@ -30,4 +34,5 @@ This project is in active development so if you have any feature requests or iss
 
 ## Getting Help
 
-If you're having any problem, please [raise an issue](https://github.com/balena-io-experimental/balena-sound/issues/new) on GitHub and we will be happy to help.
+If you're having any problem, please [raise an issue](https://github.com/balena-labs-projects/balena-sound/issues/new) on GitHub and we will be happy to help.
+>>>>>>> parent of 8604db5 (Replace balena-labs-projects org with balena-io-experimental)
