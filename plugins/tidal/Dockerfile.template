@@ -1,0 +1,28 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:buster
+
+# Balena Sound Stuff
+ENV PULSE_SERVER=tcp:localhost:4317
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+RUN curl -sL https://raw.githubusercontent.com/balena-io-experimental/audio/master/scripts/alsa-bridge/debian-setup.sh | sh
+
+# Tidal Connect Binaries
+RUN curl -sL https://raw.githubusercontent.com/ppy2/Pure_v2/13.01.2023/package/tidalconnect/tcon >/usr/bin/tcon
+RUN curl -sL https://raw.githubusercontent.com/ppy2/Pure_v2/13.01.2023/package/tidalconnect/tcon.crt >/etc/ssl/private/tcon.crt
+COPY speaker_controller_application /usr/bin
+RUN chmod a+x /usr/bin/* 
+
+# Tidal Connect Dependencies
+RUN echo 'deb http://legacy.raspbian.org/raspbian stretch main contrib non-free rpi firmware' >> /etc/apt/sources.list
+RUN install_packages multiarch-support libavformat57 libportaudio2* libflac++6v5* libavahi-common3 libavahi-client3 libncursesw5 alsa-utils
+
+RUN curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190925T215334Z/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
+RUN apt install -y ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
+RUN rm ./libssl1.0.0_1.0.1t-1%2Bdeb8u12_armhf.deb
+
+RUN curl -k -O -L https://snapshot.debian.org/archive/debian-security/20190913T112238Z/pool/updates/main/c/curl/libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb
+RUN apt install -y ./libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb --allow-downgrades
+RUN rm ./libcurl3_7.38.0-4%2Bdeb8u16_armhf.deb
+
+# Startup hooks
+COPY start_tc.sh /usr/src
+CMD [ "/bin/bash", "/usr/src/start_tc.sh" ]
